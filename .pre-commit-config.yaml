@@ -1,0 +1,35 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-ast
+  - id: check-json
+  - id: check-symlinks
+  - id: check-toml
+  - id: check-yaml
+  - id: end-of-file-fixer
+  - id: mixed-line-ending
+  - id: trailing-whitespace
+- repo: https://github.com/asottile/pyupgrade
+  rev: v3.17.0
+  hooks:
+  - id: pyupgrade
+- repo: https://github.com/pre-commit/pygrep-hooks
+  rev: v1.10.0
+  hooks:
+  - id: python-use-type-annotations
+  - id: python-check-blanket-noqa
+  - id: python-check-blanket-type-ignore
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.6.4
+  hooks:
+    - id: ruff-format
+    - id: ruff
+- repo: https://github.com/executablebooks/mdformat
+  rev: 1.0.0
+  hooks:
+  - id: mdformat
+    additional_dependencies:
+    - mdformat-simple-breaks
+    - mdformat-pyproject

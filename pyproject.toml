@@ -1,0 +1,110 @@
+[project]
+name = "blanket"
+description = "Blank Line Enforcement"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = [
+    "version",
+]
+dependencies = [
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest==8.4.2",
+    "pytest-mock==3.12.0",  # For better mocking support
+    "pytest-cov==4.1.0",    # For coverage reporting
+]
+develop = [
+    # Pre-commit
+    "pre-commit==3.8.0",
+    "ruff==0.6.4",
+
+    # Markdown formatting
+    "mdformat==1.0.0",
+    "mdformat-simple-breaks==0.1.0",
+    "mdformat-pyproject==0.1.1",
+]
+
+[build-system]
+requires = ["setuptools >= 64", "setuptools_scm >= 8"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
+
+[tool.setuptools]
+packages = ["blanket"]
+
+[project.scripts]
+blanket = "blanket.__main__:main"
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+# Select all rules by default
+exclude = ["*.ipynb"]
+select = ["ALL"]
+
+ignore = [
+    "COM812",  # Trailing comma missing - conflict with the formatter
+    "ISC001",  # Implicitly concatenated string literals on one line - conflict with the formater
+    "D1",   # Missing docstrings
+    "ANN",  # Annotations are not being used
+    "RET503",  # Do not require explicit return None
+    "RET505",  # Allow elif after return
+    "S105",   # Possible hardcoded password -- this is too sensitive
+    "DTZ003",  # Allow using datetime.utcnow()
+    "DTZ005",  # Allow using datetime.now() without timezone
+    "EM101",   # Allow defining exception messages with string literals
+    "SIM105",  # Allow try/except/pass blocks
+    "TRY003",  # Allow long exception messages
+    "TRY300",  # Allow if return / return without else
+    "TRY301",  # Allow raise within try/except
+    "RUF012",  # we do not use typing
+    "SIM108",  # Do not prefer ternary operator over if-else
+    "FBT002",  # Allow booleans in function argument defaults
+    "FIX",     # Allow TODOs in the code
+    "TD",      # Allow plain TODOs without additional context
+    "ERA",     # Allow commented out code (temporary, will be removed)
+    "DTZ011",  # Allow datetime.date.today()
+    "S311",    # allow pseudo-random generators, we are not doing crypto stuff
+    "B905",    # no strict= required in zip
+    "PERF401", # Do not force list comprehensions
+    "BLE001",  # Plain Exception is fine sometimes
+    "RET501",  # Allow returning None
+    "PLR1711", # Allow returning None at the end of a function
+    "PLR2004", # I love magic numbers
+    "SIM117",  # Allow nested context managers
+    "TRY400",  # Let me user logger.error inside exception blocks
+]
+
+# Avoid trying to fix flake8-bugbear (`B`) violations.
+unfixable = ["B"]
+
+pydocstyle.convention = "google"
+
+[tool.ruff.lint.pylint]
+max-args = 10
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+
+[tool.ruff.lint.flake8-tidy-imports]
+# Disallow all relative imports.
+ban-relative-imports = "all"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101",   # Allow asserts
+    "PLR2004",   # Allow magic numbers
+    "SLF001",   # Allow accessing private members
+    "TRY002",   # Allow raising plain exceptions for testing
+    "S106",   # Allow testing with dummy passwords
+]
+
+[tool.mdformat]
+wrap = 99
+number = true
