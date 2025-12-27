@@ -23,6 +23,25 @@ from blanket import enforce
 enforce(["path/to/file.py"])
 ```
 
+## Pre-commit
+
+Add the hook to your `.pre-commit-config.yaml`:
+
+```yaml
+repos:
+  - repo: https://github.com/csala/blanket
+    rev: v0.1.0
+    hooks:
+      - id: blanket
+```
+
+Install and run:
+
+```bash
+pre-commit install
+pre-commit run blanket --all-files
+```
+
 ## Development Roadmap
 
 - [x] Standalone script to run on individual files
