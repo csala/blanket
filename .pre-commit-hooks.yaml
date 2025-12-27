@@ -1,0 +1,8 @@
+repos:
+- repo: local
+  hooks:
+  - id: blanket
+    name: blanket
+    entry: python -m blanket
+    language: system
+    types: [python]

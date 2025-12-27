@@ -33,3 +33,10 @@ repos:
     additional_dependencies:
     - mdformat-simple-breaks
     - mdformat-pyproject
+- repo: local
+  hooks:
+  - id: blanket
+    name: blanket
+    entry: python -m blanket
+    language: system
+    types: [python]
