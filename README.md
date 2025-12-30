@@ -1,3 +1,7 @@
+[![PyPI version](https://img.shields.io/pypi/v/blanken)](https://pypi.org/project/blanken/)
+![License](https://img.shields.io/pypi/l/blanken)
+![Python versions](https://img.shields.io/pypi/pyversions/blanken)
+
 # Blanken
 
 Blank Line Enforcement for Python
@@ -11,6 +15,12 @@ It uses indentation changes and keywords as the primary way to know where logica
 end, and inserts blank lines to separate them if they are missing.
 
 ## Usage
+
+Install with pip
+
+```bash
+pip install blanken
+```
 
 Run on one or more files to insert blank lines where required:
 

@@ -16,11 +16,11 @@ install:
 
 .PHONY: install-test  ## Install as a package with test dependencies
 install-test:
-	pip install .[test]
+	pip install . --group test
 
 .PHONY: install-develop  ## Install in editable mode, with development and test dependencies
 install-develop:
-	pip install -e .[test,develop]
+	pip install -e . --group test --group develop
 
 .PHONY: clean  ## Remove build artifacts and cache files
 clean:
@@ -30,6 +30,7 @@ clean:
 	find . -type f -name "*.pyd" -delete
 	find . -type d -name ".ruff_cache" -exec rm -rf {} +
 	rm -rf build
+	rm -rf dist
 
 ## =============================================================================
 ## Code quality and tests
@@ -60,3 +61,18 @@ coverage:
 	coverage report -m
 	coverage html
 	x-www-browser htmlcov/index.html
+
+.PHONY: build  ## Build source and wheel distributions
+build:
+	$(MAKE) clean
+	python -m build
+
+.PHONY: release  ## Upload a release to PyPI
+release:
+	$(MAKE) build
+	twine upload dist/*
+
+.PHONY: test-release  ## Upload a release to TestPyPI
+test-release:
+	$(MAKE) build
+	twine upload --repository testpypi dist/*
