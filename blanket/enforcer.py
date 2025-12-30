@@ -7,8 +7,7 @@ Rules:
    statements, require exactly ONE blank line between them.
 2) If indentation depth is reduced by 1 level, require exactly ONE blank line
    between them, EXCEPT when the next thing is a continuation clause
-   (else/elif/except/finally) AND the ended block has <= 3 statements AND the
-   ended block contains no further nested indented blocks.
+   (else/elif/except/finally) AND the ended block has <= 3 statements.
 """
 
 import ast

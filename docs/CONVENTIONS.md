@@ -71,8 +71,9 @@ doubt, these are the ultimate rules that must be applied.
              break
 
          some_other_thing()   # Keep blank line above to separate from the inner if block
+         even_more_things()
 
-     else:   # keep blank line above because the for loop was more than 2 lines long.
+     else:   # keep blank line above because the for loop was more than 3 statements long.
          did_not_break()
     ```
 
@@ -85,10 +86,12 @@ doubt, these are the ultimate rules that must be applied.
         do_something_else()
 
     for variable in some_loop():
+        do_something()
         if condition:
             do_something()
         do_something_else()   # This is not part of the previous if, so it must be separated
-    else:   # Indented block above had more than 2 statements, so it must be separated
+        do_more_things()
+    else:   # Indented block above had more than 3 statements, so it must be separated
         return
 
     try:
