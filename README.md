@@ -43,7 +43,7 @@ Add the hook to your `.pre-commit-config.yaml`:
 ```yaml
 repos:
 - repo: https://github.com/csala/blanken
-  rev: v0.1.0
+  rev: v0.1.2
   hooks:
   - id: blanken
 ```
